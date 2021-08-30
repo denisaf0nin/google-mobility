@@ -10,7 +10,7 @@ R code to access [Google COVID-19 Community Mobility Reports](https://www.google
   - Mobility at Sub_region_2 Level
   - Mobility at Metro Area Level
   
-- In each file, there are six tabs - one for each category of places:
+- In each file, there are six Sheets - one for each category of places:
 
   - Retail and Recreation
   - Grocery and Pharmacy
