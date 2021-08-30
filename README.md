@@ -30,6 +30,7 @@ R code to access [Google COVID-19 Community Mobility Reports](https://www.google
 | Austria | 2020 | 0 | 5.6 | -45.387 | -69.967 | -37.194 | -17.967 | -6.161 | -6.032 | -9.2 | -22.871 | -54.867 | -52.065 |
 | Austria | 2021 | -67.774 | -48.893 | -42 | -48.7 | -31.742 | -13.8 | -5.29 | 0.6 |  
 | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... | ... |
-			
+
+(Data was extracted on August 30, so months 9-12 in 2021 are blank)			
 
 - Output examples are available [here](https://github.com/denisaf0nin/google-mobility/tree/main/Output%20examples)
