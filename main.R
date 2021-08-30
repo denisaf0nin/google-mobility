@@ -5,14 +5,16 @@ library(openxlsx)
 library(readr)
 library(readxl)
 
+
+### IMPORT AND PRE-PROCESSING ###
+# Reading raw data file
 google <- read_csv("https://www.gstatic.com/covid19/mobility/Global_Mobility_Report.csv")
 
-all_countries <- sort(unique(google$country_region))
+# Reading file with the list of required countries
 countries_list <- read_excel("countries_list.xlsx") %>% select(1) %>% .[[1]]
 
 # Remove countries that are not available in google file:
-countries_list <- countries_list[countries_list %in% all_countries]
-
+countries_list <- countries_list[countries_list %in% sort(unique(google$country_region))]
 
 # Filter required countries only. Remove extra columns:
 df <- google %>%
@@ -20,7 +22,6 @@ df <- google %>%
   select(c(2:5, 9:15)) 
 
 df$date <- as.Date(df$date,"%Y/%m/%d")
-
 
 # Create four datasets - one for each level of geographical hierarchy:
 country_level <- df %>%
@@ -40,9 +41,8 @@ metro_area <- df %>%
   select(1, 4:11)
 
 
-
+### TRANSFORMATION ###
 # A function to transform a dataset into required shape 
-
 transform <- function(df, geo_groups){
   
   transformed_df <- df %>%
@@ -74,11 +74,12 @@ sub_reg_2 <- transform(sub_reg_2, cols_sub_region_2)
 metro_area <- transform(metro_area, cols_metro_area)
 
 
+### OUTPUT ###
 # Get list of mobility groups
 mobility_groups <- colnames(country_level)[4:ncol(country_level)]
 i <- mobility_groups[2]
 
-# Create a blank workbook
+# Defining a function to create a blank workbook, write data in sheets and save the workbook
 write_wb <- function(df, wb_name) {
   OUT <- createWorkbook()
   
@@ -98,7 +99,7 @@ write_wb <- function(df, wb_name) {
   saveWorkbook(OUT, wb_name, overwrite=T)
 }
 
-
+# Running the write_wb function for all four datasets grouped at different geographical levels
 write_wb(country_level, "Country Level Mobility.xlsx")
 write_wb(sub_reg_1, "Sub_reg_1 Level Mobility.xlsx")
 write_wb(sub_reg_2, "Sub_reg_2 Level Mobility.xlsx")
