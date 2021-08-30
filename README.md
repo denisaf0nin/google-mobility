@@ -1,7 +1,7 @@
 # Google COVID-19 Community Mobility Reports Downloader
 ![image](https://user-images.githubusercontent.com/59995500/131332872-d4d0a99f-6ae9-4d63-8cec-cfd62caaf042.png)
 
-R code to access [Google COVID-19 Community Mobility Reports](https://www.google.com/covid19/mobility/) csv file and transforming it to the required format:
+R code to access [Google COVID-19 Community Mobility Reports](https://www.google.com/covid19/mobility/) csv file and transform it to the required format:
 - Only countries from `countries_list.xlsx` file are included
 - Four output Excel files are created - one for each level of geographical aggregation:
 
